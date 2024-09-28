@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Maarouf</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="files/icon.png" type="image/x-icon">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Merriweather', serif;
+            font-size: 11px; /* Reduced base font size */
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: white;
+        }
+
+        /* Main container to center the sidebar and content */
+        .main-container {
+            max-width: 1200px; /* Set a max width to keep the site centered */
+            margin: 0 auto; /* Center the container */
+            display: flex;
+            flex-direction: column; /* Stack the header and content vertically */
+            min-height: 100vh; /* Ensure the container spans the full height */
+        }
+
+        /* Header styling */
+        header {
+            background-color: #50824a;
+            color: white;
+            padding: 20px 15px; /* Increased padding for more height */
+            text-align: center; /* Center the text */
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Center content horizontally */
+            flex-direction: column; /* Stack the name and contact information vertically */
+            z-index: 1000;
+            width: 100%;
+            height: 150px; /* Adjust height of the header */
+            position: relative;
+        }
+
+        /* Hamburger menu icon */
+        .menu-btn {
+            display: none; /* Hidden on desktop */
+            font-size: 32px;
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            cursor: pointer;
+        }
+
+        /* Placeholder for portrait */
+        .portrait {
+            width: 100px; /* Set width and height of the portrait */
+            height: 100px;
+            border-radius: 50%; /* Make the image circular */
+            margin-bottom: 10px;
+        }
+
+        /* Contact information line */
+        .contact-info {
+            margin-top: 5px;
+            font-size: 16px; /* Slightly larger font for contact info */
+            color: #e0e0e0; /* Lighter color for contrast */
+        }
+
+        /* Styling for the email link */
+        .contact-info a {
+            color: #f0f0f0; /* Off-white color for the email */
+            text-decoration: underline; /* Underline the email link */
+        }
+
+        .contact-info a:hover {
+            color: #e0e0e0; /* Slightly lighter color on hover */
+        }
+
+        /* Sidebar and content wrapper */
+        .content-wrapper {
+            display: flex;
+            flex: 1; /* Ensures the wrapper grows to fill the remaining space */
+            width: 100%;
+        }
+
+        .sidebar {
+            width: 160px; /* Sidebar width */
+            background-color: #1f1f1f;
+            padding-top: 50px;
+            position: sticky; /* Sidebar stays fixed while scrolling */
+            top: 0;
+            height: 100%;
+            z-index: 1000;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .sidebar a:hover {
+            background-color: #333;
+        }
+
+        .content {
+            padding: 20px;
+            margin-top: 50px;
+            width: calc(100% - 180px); /* Adjust width for the sidebar */
+        }
+
+        section {
+            display: none;
+        }
+
+        h2, p {
+            color: white;
+        }
+
+        /* Container for Experience and Education sections */
+        .container {
+            max-width: 800px; /* Set max-width for the "page format" effect */
+            margin: 0 auto; /* Center the content */
+            padding: 0 20px; /* Add padding for better readability */
+        }
+
+        /* Project card styles */
+        #projects .project-card {
+            display: inline-block;
+            width: 48%;
+            margin: 1%;
+            background-color: #1f1f1f;
+            padding: 20px;
+            text-align: center;
+            box-sizing: border-box;
+            border-radius: 8px;
+        }
+
+        #projects .project-card img {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+
+        #projects .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        /* Links styling */
+        a {
+            color: #50824a;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: #6fa463;
+        }
+
+        /* Responsive layout */
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+            }
+            .content-wrapper {
+                flex-direction: column;
+            }
+            header {
+                width: 100%; /* Ensure the header is full-width on mobile */
+            }
+            .sidebar {
+                width: 200px;
+                transform: translateX(-100%);
+                position: fixed;
+            }
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            .menu-btn {
+                display: block; /* Show menu button on mobile */
+            }
+            .content {
+                margin-left: 0;
+                width: 95%; /* Slightly reduce the content width on mobile */
+                padding-right: 15px; /* Add extra padding to right side */
+            }
+            #projects .project-card {
+                width: 100%;
+            }
+        }
+
+        /* Font size adjustments for larger screens */
+        @media (min-width: 768px) {
+            body {
+                font-size: 18px; /* Reduced desktop base font size */
+            }
+            h1 {
+                font-size: calc(1.8em); /* Adjusted to smaller size */
+            }
+            h2 {
+                font-size: calc(1.4em); /* Adjusted to smaller size */
+            }
+            h3 {
+                font-size: calc(1.1em); /* Adjusted to smaller size */
+            }
+            p {
+                font-size: calc(0.9em); /* Slightly smaller for better readability */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <header>
+            <button class="menu-btn" onclick="toggleSidebar()">☰</button> <!-- Hamburger menu button -->
+            <img src="files/me.png" alt="Portrait" class="portrait"> <!-- Placeholder for self-portrait -->
+            <span>Alex Maarouf</span>
+            <div class="contact-info">
+                Contact: <a href="mailto:maarouf.alx@gmail.com">maarouf.alx@gmail.com</a>
+            </div> <!-- Contact information -->
+        </header>
+
+        <div class="content-wrapper"> <!-- Added content-wrapper to group sidebar and content -->
+            <div class="sidebar" id="sidebar">
+                <a href="#" onclick="showSection('projects')">Projects</a>
+                <a href="#" onclick="showSection('experience')">Experience</a>
+                <a href="#" onclick="showSection('education')">Education</a>
+            </div>
+
+            <div class="content">
+                <section id="projects">
+                    <h2>Projects</h2>
+                    <div class="row">
+                        <div class="project-card">
+                            <img src="files/logo.png" class="project-img">
+                            <h4><a href="https://alsagheera.com" target="_blank">Al Maktaba Al Sagheera E-commerce Website</a></h4>
+                            <p>Directed and overlooked the launching and maintenance of the company's B2C expansion. Website is en par with competition in the market and has provided the company with significant brand value and growth potential.</p>
+                        </div>
+                        <div class="project-card">
+                            <img src="files/humboldt.png" class="project-img">
+                            <h4><a href="https://github.com/ax-mrf/mlim20-21" target="_blank">Machine Learning in Marketing Word2Vec Coupon Suggestion</a></h4>
+                            <p>The utilization of feature engineering and predictive analytics, specifically the Product2Vec model, by giving "meaning" to the products, to be able to give out more efficiently targeted coupon discounts, achieving maximum revenues.</p>
+                        
+                            <h4><a href="https://github.com/ax-mrf/adams20" target="_blank">Predicting Number of Claps on Medium Articles</a></h4>
+                            <p>Utilizing NLP and the latest predictive analytics tools to predict number of claps on a medium article through a full pipeline. </p>
+                        </div>
+                        <div class="project-card">
+                            <img src="files/odoo%20woo.png" class="project-img">
+                            <h4><a href="https://alsagheera.com/" target="_blank">System Migration from Paper-based to Odoo and Woocommerce</a></h4>
+                            <p>Directed the development of an inventory custom system that optimizes logistics, data processing and e-commerce of the wide array of stationery products offered by Al Maktaba Al Sagheera, this was made by developing in-house customizations to both back-end platforms and also creating an automatically syncing system to connect both.<br> <br> Developing the pipeline connecting both systems in python also allowed us to perform data and predictive analytics supporting decision making easily.<br> <br> Contact me for more information about this project.</p>
+                        </div>
+                        <div class="project-card">
+                            <img src="files/branding.png" class="project-img">
+                            <h4><a href="https://www.instagram.com/a.alsagheera/" target="_blank">Visual Branding of Al Maktaba Al Sagheera</a></h4>
+                            <p>Created the visual branding kit and directed its use in designing the e-commerce website. Developed an in-house product photography system that aligns with the brand and is en par with the highest relevant market standards.</p>
+                        </div>
+                        <div class="project-card">
+                            <img src="files/alson.png" class="project-img">
+                            <h4><a href="https://www.facebook.com/AlsonBookstore" target="_blank">Alson Bookstore</a></h4>
+                            <p>My first project, opening and managing a local bookstore that hosted a borrowing section, a book club and a printing department between 2013 and 2014.<br> <br> Developed a simple sales and inventory database on excel. <br> <br>  </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="experience">
+                    <div class="container">
+                        <h2>Experience</h2>
+                        <h1>Founder and Director</h1>
+                        <p><strong>Al Maktaba Al Sagheera LLC, Alexandria, Egypt (Remote)</strong> <br>
+                        Jun 2019 - Present</p>
+                        <p>B2B retail company for stationery and books. Clients are mainly B2C businesses who seek outsourcing procurement, pricing, logistics, display and sales of stationery and books, especially during back-to-school seasons.</p>
+
+                        <h2>Managerial:</h2>
+                        <ul>
+                            <li>Directed the company’s growth from serving 13 branches and making 2.8m EGP in revenues per year to serving 28 branches + an independent B2C platform with 13.9m EGP in revenues.</li>
+                            <li>Developed and overlooked the launch of its own <strong>B2C e-commerce</strong> platform featuring more than 2500 products. (<a href="https://alsagheera.com/" target="_blank">https://alsagheera.com/</a>)</li>
+                            <li>Developed and overlooked system migration from paper-based invoicing and inventory system to a cloud-based custom Odoo ERP system.</li>
+                            <li>Designed an efficient warehouse and logistics system suitable for the company's diverse needs.</li>
+                        </ul>
+
+                        <h2>Technical:</h2>
+                        <ul>
+                            <li>Designed and implemented <strong>data analytics</strong> systems to support procurement, pricing, marketing, and estimation of demand using a pipeline written in <strong>Python</strong>.</li>
+                            <li>Designed the complete visual branding kit for the company.</li>
+                            <li>Conducted managerial accounting and financial management measures for clearer data-driven decision-making.</li>
+                            <li>Supported the website’s front and back-end development for WordPress in times of need.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="education">
+                    <div class="container">
+                        <h2>Education</h2>
+                        <h1>Master’s of Economics and Management Science</h1>
+                        <p><strong><a href="https://www.hu-berlin.de/de" target="_blank">Humboldt Universität zu Berlin</a>, Berlin, Germany</strong> <br>
+                        Oct 2019 - Dec 2024</p>
+
+                        <p><strong>Field of study:</strong> Quantitative Management Science, Chair of Information Systems.</p>
+                        <p><strong>Dissertation topic:</strong> AI for Quiz Generation.</p>
+                        <ul>
+                            <li>Using and evaluating a <strong>GPT-based predictive model</strong> to generate quizzes from syllabus slides.</li>
+                        </ul>
+
+                        <h3>Key courses:</h3>
+                        <ul>
+                            <li><strong>Machine learning in marketing.</strong>
+                                <ul>
+                                    <li><a href="https://github.com/ax-mrf/mlim20-21" target="_blank">Project: Developing a Product2Vec model for more efficient coupon targeting.</a></li>
+                                </ul>
+                            </li>
+                            <li><strong>Advanced data analytics for management support.</strong>
+                                <ul>
+                                    <li><a href="https://github.com/ax-mrf/adams20" target="_blank">Project: Utilizing NLP and predictive analytics tools to predict the number of claps on a Medium article.</a></li>
+                                </ul>
+                            </li>
+                            <li>Business Analytics and Data Science</li>
+                            <li>Applied Predictive Analytics Seminar</li>
+                        </ul>
+
+                        <h1>Bachelor of Business Administration</h1>
+                        <p><strong><a href="https://aast.edu/en/" target="_blank">Arab Academy for Science, Technology and Maritime Transport</a>, Alexandria, Egypt</strong> <br>
+                        2015-2019</p>
+
+                        <p><strong>Field of study:</strong> Finance and Accounting</p>
+                        <p><strong>Final grade:</strong> 3.79/4</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Show section and hide others
+        function showSection(sectionId) {
+            document.querySelectorAll('section').forEach(section => section.style.display = 'none');
+            document.getElementById(sectionId).style.display = 'block';
+            document.getElementById('sidebar').classList.remove('open');
+        }
+
+        // Show Projects section by default
+        window.onload = function() {
+            showSection('projects');
+        };
+
+        // Toggle sidebar on mobile
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+        }
+    </script>
+
+</body>
+</html>
+
